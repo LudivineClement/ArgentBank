@@ -1,16 +1,16 @@
 import React from 'react';
+import Error404 from '../components/Error404/Error404';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
-import Form from '../components/Form/Form';
 
-const Login = () => {
+const Page404 = () => {
   return (
-    <div className='page_login'>
+    <div>
       <Navbar />
-      <Form />
+      <Error404 />
       <Footer />
     </div>
   );
 };
 
-export default Login;
+export default Page404;

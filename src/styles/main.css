@@ -17,6 +17,14 @@ li {
   list-style: none;
 }
 
+.main {
+  flex: 1;
+}
+
+.bg-dark {
+  background-color: #12002b;
+}
+
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -30,3 +38,10 @@ li {
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
 }
+
+.page_login, .page_account {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
