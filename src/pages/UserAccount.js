@@ -13,7 +13,7 @@ const User = () => {
   useEffect(() => {
     if (!token) {
       navigate('/login');
-    }
+    } 
   }, [token, navigate]);
 
   return (

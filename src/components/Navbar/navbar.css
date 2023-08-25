@@ -14,7 +14,7 @@
   color: #42b983;
 }
 
-.fa-user-circle {
+.fa-user-circle, .fa-sign-out {
   margin-right: 5px;
 }
 
@@ -35,4 +35,10 @@
 .main-nav-logo-image {
   max-width: 100%;
   width: 200px;
+}
+
+.navbar_loginSuccess {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }

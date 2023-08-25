@@ -1,8 +1,9 @@
-import { USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE, LOGOUT_USER } from '../actions/user.action';
+import { USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE, LOGOUT_USER, USER_PROFILE } from '../actions/user.action';
 
 const initialState = {
   token: null,
   loginError: null,
+  userProfile: '',
 };
 
 const userReducer = (state = initialState, action) => {
@@ -19,11 +20,17 @@ const userReducer = (state = initialState, action) => {
         token: null,
         loginError: action.payload,
       };
-      case LOGOUT_USER:
+    case LOGOUT_USER:
       return {
         ...state,
         token: null,
         loginError: null,
+        userProfile: '',
+      };
+    case USER_PROFILE:
+      return {
+        ...state,
+        userProfile: action.payload,
       };
     default:
       return state;
