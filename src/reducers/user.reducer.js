@@ -1,4 +1,4 @@
-import { USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE, LOGOUT_USER, USER_PROFILE } from '../actions/user.action';
+import { USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE, LOGOUT_USER, USER_PROFILE, UPDATE_USER_NAME } from '../actions/user.action';
 
 const initialState = {
   token: null,
@@ -31,6 +31,12 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         userProfile: action.payload,
+      };
+      case UPDATE_USER_NAME:
+      const newProfile = { ...state.userProfile, userName: action.payload };
+      return {
+        ...state,
+        userProfile: newProfile,
       };
     default:
       return state;

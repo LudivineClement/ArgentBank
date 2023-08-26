@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import logo from '../../assets/argentBankLogo.png';
+import logo from '../../assets/argentBankLogo.webp';
 import './navbar.css';
 import { logoutUser } from '../../actions/user.action';
 import { fetchUserProfile } from '../../actions/user.action';
@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className='navbar_loginSuccess'>
           <NavLink to='/user-account' className='main-nav-item'>
             <i className='fa fa-user-circle'></i>
-            {userProfile.firstName}
+            {userProfile.userName}
           </NavLink>
           <NavLink to='/' className='main-nav-item' onClick={handleSignOut}>
             <i className='fa fa-sign-out'></i>
