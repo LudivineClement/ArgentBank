@@ -7,14 +7,13 @@ import { logoutUser } from '../../actions/user.action';
 import { fetchUserProfile } from '../../actions/user.action';
 
 const Navbar = () => {
-  const token = useSelector((state) => state.user.token);
+  const token = localStorage.getItem('token');
   const userProfile = useSelector((state) => state.user.userProfile);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSignOut = (e) => {
     e.preventDefault();
-    localStorage.clear();
     dispatch(logoutUser());
     navigate('/');
   };
