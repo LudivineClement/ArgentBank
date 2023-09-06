@@ -3,6 +3,7 @@ import { USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE, LOGOUT_USER, USER_PROFILE, UPDA
 const initialState = {
   loginError: null,
   userProfile: '',
+  isAuthenticated: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -11,6 +12,7 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loginError: null,
+        isAuthenticated: true,
       };
     case USER_LOGIN_FAILURE:
       return {
@@ -22,13 +24,14 @@ const userReducer = (state = initialState, action) => {
         ...state,
         loginError: null,
         userProfile: '',
+        isAuthenticated: false,
       };
     case USER_PROFILE:
       return {
         ...state,
         userProfile: action.payload,
       };
-      case UPDATE_USER_NAME:
+    case UPDATE_USER_NAME:
       const newProfile = { ...state.userProfile, userName: action.payload };
       return {
         ...state,
