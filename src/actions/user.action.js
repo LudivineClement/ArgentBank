@@ -39,8 +39,6 @@ export const loginUser = (email, password, navigate, rememberMe) => {
         }
       );
 
-      console.log(response);
-
       if (response.status === 200) {
         const token = response.data.body.token;
         if (rememberMe) {
@@ -94,8 +92,6 @@ export const fetchUserProfile = () => {
         }
       );
 
-      console.log(response);
-
       if (response.status === 200) {
         const userProfile = response.data.body;
         dispatch({
@@ -134,8 +130,6 @@ export const updateUserName = (userName) => {
           },
         }
       );
-
-      console.log(response);
 
       if (response.status === 200) {
         dispatch({
