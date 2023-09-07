@@ -7,7 +7,9 @@ import { logoutUser } from '../../actions/user.action';
 import { fetchUserProfile } from '../../actions/user.action';
 
 const Navbar = () => {
-  const token = localStorage.getItem('token');
+  const tokenLocalStorage = localStorage.getItem('token');
+  const tokenSessionStorage = sessionStorage.getItem('token');
+  const token = tokenLocalStorage || tokenSessionStorage;
   const userProfile = useSelector((state) => state.user.userProfile);
   const navigate = useNavigate();
   const dispatch = useDispatch();

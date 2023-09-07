@@ -20,6 +20,7 @@ export const userLoginFailure = (error) => ({
 // Action pour déconnecter l'utilisateur
 export const logoutUser = () => {
   localStorage.removeItem("token");
+  sessionStorage.removeItem("token");
   return {
     type: LOGOUT_USER,
   };
@@ -27,7 +28,7 @@ export const logoutUser = () => {
 
 //////// Action pour gérer la connexion de l'utilisateur
 
-export const loginUser = (email, password, navigate) => {
+export const loginUser = (email, password, navigate, rememberMe) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
@@ -42,29 +43,42 @@ export const loginUser = (email, password, navigate) => {
 
       if (response.status === 200) {
         const token = response.data.body.token;
-        localStorage.setItem("token", token);
+        if (rememberMe) {
+          localStorage.setItem("token", token);
+        } else {
+          sessionStorage.setItem("token", token);
+        }
         navigate("/user-account");
         dispatch(userLoginSuccess());
       } else {
         localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
       }
 
       if (response.status === 401) {
-        localStorage.remove("token");
+        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         navigate("/login");
       }
     } catch (error) {
       dispatch(userLoginFailure("identifiants incorrects"));
       localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
     }
   };
 };
+
 
 ///////// Action pour récupérer le profil de l'utilisateur depuis le serveur
 
 export const fetchUserProfile = () => {
   return async (dispatch) => {
-    const token = localStorage.getItem("token");
+    let token = localStorage.getItem("token");
+
+    if (!token) {
+      token = sessionStorage.getItem("token");
+    }
+
     if (!token) {
       return;
     }
@@ -95,11 +109,17 @@ export const fetchUserProfile = () => {
   };
 };
 
+
 ///////// Action pour mettre à jour le nom d'utilisateur
 
 export const updateUserName = (userName) => {
   return async (dispatch) => {
-    const token = localStorage.getItem("token");
+    let token = localStorage.getItem("token");
+
+    if (!token) {
+      token = sessionStorage.getItem("token");
+    }
+
     if (!token) {
       return;
     }
